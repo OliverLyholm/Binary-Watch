@@ -18,7 +18,7 @@ def drawBinary(canvas, value, x, y, bits):
         circleY = y - (bits - i - 1) * 30
 
         if bit == "1":
-            color = "blue"
+            color = "#428bff"
 
         else:
             color = "gray"
