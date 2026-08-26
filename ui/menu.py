@@ -2,6 +2,12 @@ import tkinter as tk
 
 
 def createMenu(window, timezone):
+    """Main Menu creation
+
+    Args:
+        window (tk.tk): the main window to be created in
+        timezone (tk.stringVar): contains the selected timezone
+    """  
     menu = tk.Menu(window)
 
     timezoneMenu = tk.Menu(menu, tearoff=0)
