@@ -16,7 +16,7 @@ def createWindow():
 
     timezone = tk.StringVar(value="Europe/Copenhagen")
 
-    clock = tk.Canvas(window, width=380, height=300, bg="black")
+    clock = tk.Canvas(window, width=320, height=300, bg="black")
     clock.pack(pady=10)
 
     timezoneLabel = tk.Label(window, font=("Arial", 28))

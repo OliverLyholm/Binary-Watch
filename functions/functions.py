@@ -12,13 +12,13 @@ def drawBinary(canvas, value, x, y, bits):
         y (int): Y cordinate of the first dot
         bits (int): number of bits to display
     """
-    binary = format(value, f"0{bits}b")[::-1]
+    binary = format(value, f"0{bits}b")
 
     for i, bit in enumerate(binary):
-        circleY = y + i * 30
+        circleY = y - (bits - i - 1) * 30
 
         if bit == "1":
-            color = "lime"
+            color = "blue"
 
         else:
             color = "gray"
@@ -38,22 +38,34 @@ def updateClock(window, clock, timezoneLabel, timezone):
     currentTime = datetime.now(ZoneInfo(timezone.get()))
 
     clock.delete("all")
-    hours = currentTime.hour
-    minutes = currentTime.minute
-    seconds = currentTime.second
+    
+    hourTens = currentTime.hour // 10
+    hourOnes = currentTime.hour % 10
+    
+    minuteTens = currentTime.minute // 10
+    minuteOnes = currentTime.minute % 10
+    
+    secondTens = currentTime.second // 10
+    secondOnes = currentTime.second % 10
+    
 
-    clock.create_text(90, 20, text="Hours", fill="white")
-    clock.create_text(180, 20, text="Minutes", fill="white")
-    clock.create_text(270, 20, text="Seconds", fill="white")
+    clock.create_text(50, 280, text="Hours", fill="white")
+    clock.create_text(150, 280, text="Minutes", fill="white")
+    clock.create_text(250, 280, text="Seconds", fill="white")
 
-    values = [1, 2, 4, 8, 16, 32]
+    values = [8, 4, 2, 1]
 
     for i, value in enumerate(values):
-        clock.create_text(300, 58 + i * 30, text=value, fill="white")
+        clock.create_text(300, 158 + i * 30, text=value, fill="white")
 
-    drawBinary(clock, hours, 80, 50, 5)
-    drawBinary(clock, minutes, 170, 50, 6)
-    drawBinary(clock, seconds, 260, 50, 6)
+    drawBinary(clock, hourTens, 20, 240, 2)
+    drawBinary(clock, hourOnes, 60, 240, 4)
 
+    drawBinary(clock, minuteTens, 120, 240, 3)
+    drawBinary(clock, minuteOnes, 160, 240, 4)
+
+    drawBinary(clock, secondTens, 220, 240, 3)
+    drawBinary(clock, secondOnes, 260, 240, 4)
+    
     timezoneLabel.config(text=timezone.get())
     window.after(1000, updateClock, window, clock, timezoneLabel, timezone)
