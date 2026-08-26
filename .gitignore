@@ -1,3 +1,6 @@
 __init__.py
 ui/__pycache__
 functions/__pycache__
+build
+dist
+*.spec
