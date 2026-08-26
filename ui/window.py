@@ -6,15 +6,20 @@ from .menu import createMenu
 
 def createWindow():
     window = tk.Tk()
-    window.title("Digital Watch")
-    window.geometry("450x150")
+    window.title("Binary Watch")
+    window.geometry("400x400")
 
     timezone = tk.StringVar(value="Europe/Copenhagen")
 
-    clock = tk.Label(window, font=("Arial", 40), text="Test")
-    clock.pack()
+    clock = tk.Canvas(
+        window,
+        width=380,
+        height=300,
+        bg="black"
+    )
+    clock.pack(pady=10)
 
-    timezoneLabel = tk.Label(window, font=("Arial", 20))
+    timezoneLabel = tk.Label(window, font=("Arial", 28))
     timezoneLabel.pack()
 
     createMenu(window, timezone)
